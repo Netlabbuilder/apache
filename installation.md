@@ -41,7 +41,7 @@ Mar 19 20:53:15 linux.fritz.box httpd[8923]: Server configured, listening on: po
 Mar 19 20:53:15 linux.fritz.box systemd[1]: Started The Apache HTTP Server.
 [hungtx@linux ~]$
 ```
-5. Test if Apache is properly running by opening the default page with hostname of `localhost` or loopback IP address of `127.0.0.1`:
+5. Test if Apache is properly running on the same machine/server by opening the default page with hostname of `localhost` or loopback IP address of `127.0.0.1`:
 ```
 http://localhost
 ```
