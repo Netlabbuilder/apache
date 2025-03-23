@@ -55,6 +55,6 @@ To change the default listening port from port 80 to another port, please modify
    ```
    The output line `Mar 23 14:54:29 linux.fritz.box httpd[8060]: Server configured, listening on: port 8008` indicates that the listening port has been changed to 8008
 5. Check the default AlmaLinux Test Page again:
-    - With new URL of `http://locahost:8008` or `http://127.0.0.1:8008` on the AlmaLinux machine/server on which the Apache HTTP Server is installed.
-    - With new URL of `http://webserver_ip_address` on other machines/clients.
+    - With new URL of `http://locahost:8008` or `http://127.0.0.1:8008` on the AlmaLinux machine/server (on which the Apache is installed).
+    - With new URL of `http://webserver_ip_address` from other machines/clients. The `webserver_ip_address` is the non-local IP address of the AlmaLinux machine/server (on which Apache is installed)
 
