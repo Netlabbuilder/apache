@@ -1,6 +1,8 @@
 The default listening port on Apache HTTP Server is port 80 for HTTP traffic.
 
-To change the default listening port from port 80 to another port, please modify the the `Listen` directive in the Apache configuration file `/etc/httpd/conf/httpd.conf`:
+To change the default listening port from port 80 to another port, please modify the the `Listen` directive in the Apache configuration file `/etc/httpd/conf/httpd.conf`.
+
+**IMPORTANT NOTE:** (Please see bullet point # 7) On SELinux-enforced systems, Apache HTTP Server can only listen on allowed ports. This means, if Apache HTTP Server is configured to listen on a port which is not allowed by SELinux, it will not work.
 
 1. Verify the current listening port, the output shows `Listen 80`:
    ```
@@ -89,4 +91,19 @@ To change the default listening port from port 80 to another port, please modify
    [hungtx@linux ~]$
    ```
    The output of `Mar 23 16:34:52 linux.fritz.box httpd[11537]: Server configured, listening on: port 8008, port 80` indicates that Apache HTTP Server is listening on multiple ports 80 and 8008.
-    
+7. **IMPORTANT NOTE:** On SELinux-enforced systems, Apache HTTP Server can only listen on allowed ports. This means, if Apache HTTP Server is configured to listen on a port which is not allowed by SELinux, it will not work.
+   - To verify the current allowed ports for HTTP service by SELinux:
+      ```
+      hungtx@linux ~]$ sudo semanage port -l | grep "^http_port_t"
+      http_port_t                    tcp      80, 81, 443, 488, 8008, 8009, 8443, 9000
+      [hungtx@linux ~]$
+      ```
+   - To allow a new TCP port which is not in allowed list (for example port 8080), please use the following command:
+     ```
+      sudo semanage port -a -t http_port_t -p tcp 8080
+     ```
+     `-a` --add, Add a record of the specified object type.\
+     `-t` TYPE, --type TYPE, SELinux type for the object.\
+     `-p` PROTO, --proto PROTO, Protocol for the specified port (tcp|udp|dccp|sctp) or internet protocol version for the specified node (ipv4|ipv6).\
+
+
