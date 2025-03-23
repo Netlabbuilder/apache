@@ -85,5 +85,25 @@ success
 [hungtx@linux ~]$ firewall-cmd --list-services 
 cockpit dhcpv6-client http ssh
 ```
-9. Access the default AlmaLinux Test Page from other machines / clients by openning `http://webserver_ip_address`, with webserver_ip_address is the non-local IP address of the AlmaLinux machine/server (on which Apache is installed)
+9. Access the default AlmaLinux Test Page from other machines / clients by openning `http://webserver_ip_address`, with `webserver_ip_address` is the non-local IP address of the AlmaLinux machine/server (on which Apache is installed)
+10. Bonus - To work with Apache log files such as `/var/log/httpd/access_log` or other log files in the past `/var/log/httpd/access_log-YYYYMMDD`:
+    - To extract unique IP addresses and count the number of requests per IP address, then sort (highest to lowest)
+      ```
+      [hungtx@linux ~]$ sudo awk '{print $1}' /var/log/httpd/access_log-20250323 | sort | uniq -c | sort -nr
+          21 127.0.0.1
+          14 192.168.178.27
+           9 ::1
+           6 192.168.178.59
+           4 192.168.178.20
+      [hungtx@linux ~]$
+      ```
+    - To extract unique IP addresses and count the number of requests with HTTP status code of `200` per IP address, then sort (highest to lowest):
+      ```
+      [hungtx@linux ~]$ sudo grep 200 /var/log/httpd/access_log-20250323 | awk '{print $1}' | sort | uniq -c | sort -nr
+           7 127.0.0.1
+           2 192.168.178.59
+           2 192.168.178.27
+           2 192.168.178.20
+      [hungtx@linux ~]$ 
+      ```
 
