@@ -1,4 +1,4 @@
-# Apache on Alma Linux
+# Apache on AlmaLinux
 
 Please follow these steps to install Apache HTTP Server on AlmaLinux machine or server
 
