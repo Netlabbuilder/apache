@@ -12,7 +12,7 @@ Please follow these steps to install Apache HTTP Server on AlmaLinux machine or 
      Server version: Apache/2.4.62 (AlmaLinux)
      Server built:   Jan 10 2025 00:00:00
      ```
-3. Verify if Apache is running, if the output shows `Active: inactive (dead)`, then the httpd.service is not running and is not started:
+3. Verify if Apache is running, if the output shows `Active: inactive (dead)`, then the `httpd.service` is not running and is not started:
      ```
      hungtx@linux ~]$ systemctl status httpd
      ○ httpd.service - The Apache HTTP Server
@@ -58,7 +58,7 @@ Please follow these steps to install Apache HTTP Server on AlmaLinux machine or 
      [hungtx@linux ~]$ 
      ```
 6. Access the default AlmaLinux Test Page by openning `http://locahost` or `http://127.0.0.1` on the same AlmaLinux machine/server
-7. To access the default AlmaLinux Test Page from other machines or clients, please first verify if firewalld service is running or not with `systemctl status firewalld.service`. If firewalld is running, verify if http service is allowed or not with `firewall-cmd --list-services`:
+7. To access the default AlmaLinux Test Page from other machines or clients, please first verify if `firewalld.service` is running or not with `systemctl status firewalld.service`. If firewalld is running, verify if http service is allowed or not with `firewall-cmd --list-services`:
      ```
      [hungtx@linux ~]$ systemctl status firewalld.service 
      ● firewalld.service - firewalld - dynamic firewall daemon
