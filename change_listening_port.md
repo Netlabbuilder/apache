@@ -92,6 +92,20 @@ To change the default listening port from port 80 to another port, please modify
    ```
    The output of `Mar 23 16:34:52 linux.fritz.box httpd[11537]: Server configured, listening on: port 8008, port 80` indicates that Apache HTTP Server is listening on multiple ports 80 and 8008.
 7. **IMPORTANT NOTE:** On SELinux-enforced systems, Apache HTTP Server can only listen on allowed ports. This means, if Apache HTTP Server is configured to listen on a port which is not allowed by SELinux, it will not work.
+   - To verify is SELinux is enabled or not:
+     ```
+      [hungtx@linux ~]$ sestatus
+      SELinux status:                 enabled
+      SELinuxfs mount:                /sys/fs/selinux
+      SELinux root directory:         /etc/selinux
+      Loaded policy name:             targeted
+      Current mode:                   enforcing
+      Mode from config file:          enforcing
+      Policy MLS status:              enabled
+      Policy deny_unknown status:     allowed
+      Memory protection checking:     actual (secure)
+      Max kernel policy version:      33
+     ```
    - To verify the current allowed ports for HTTP service by SELinux:
       ```
       hungtx@linux ~]$ sudo semanage port -l | grep "^http_port_t"
